@@ -112,6 +112,32 @@ const logout = async(req,res)=>{
     return res.json(new ApiResponse(true,"User loggedout successfully"));
 }
 
+const getAllTodoOfUser = async(req,res)=>{
+    const userId = req.user._id;
+    try{
+        const user = await User.findById(userId).populate("todos");
+        if(!user){
+            return res.json(new ApiResponse(false,"User not found"));
+        }
+        return res.json(new ApiResponse(true,"Todos Fetched successfully",user));
+    }
+    catch(error){
+        console.log(error);
+        return res.json(new ApiResponse(false,error.message));
+    }
+}
+
+const checkAuth = async(req,res) =>{
+    try{
+
+        return res.json(new ApiResponse(true,"Successfully checked auth",req.user));
+
+    }
+    catch(error){
+        console.log(error);
+        return res.json(new ApiResponse(false,error.message));
+    }
+}
 
 
-export {register,login,logout}
+export {register,login,logout,checkAuth,getAllTodoOfUser}

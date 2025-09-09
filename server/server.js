@@ -4,10 +4,11 @@ import dbConnect from "./lib/database.js";
 const app=express();
 import cookieParser from "cookie-parser";
 import userRoute from "./routes/user.route.js";
+import todoRoute from "./routes/todo.route.js";
 
 app.use(cookieParser());
 app.use(express.json());
-
+app.use('/api/todo',todoRoute);
 app.use('/api/user',userRoute);
 
 const port=process.env.PORT || 4000;
