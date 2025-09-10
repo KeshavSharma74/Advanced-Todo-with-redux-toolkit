@@ -11,7 +11,7 @@ const app = express();
 // ✅ Configure CORS
 app.use(
   cors({
-    origin: "http://localhost:5173", // your frontend URL (React Vite default)
+    origin: "https://advanced-todo-with-redux-toolkit-3o.vercel.app", // your frontend URL (React Vite default)
     credentials: true, // allow cookies & auth headers
   })
 );
