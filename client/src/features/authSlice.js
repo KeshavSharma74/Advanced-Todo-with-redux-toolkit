@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/api/user";
+const API_URL = "https://advanced-todo-with-redux-toolkit.vercel.app/api/user";
 
 // ✅ Axios global config
 axios.defaults.withCredentials = true;

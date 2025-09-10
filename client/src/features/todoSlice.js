@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/api/todo";
+const API_URL = "https://advanced-todo-with-redux-toolkit.vercel.app/api/todo";
 axios.defaults.withCredentials = true;
 
 // 🔹 Get all todos for logged-in user
@@ -9,7 +9,7 @@ export const getTodos = createAsyncThunk(
   "todos/getTodos",
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`http://localhost:3000/api/user/get-todos`, { withCredentials: true });
+      const res = await axios.get(`https://advanced-todo-with-redux-toolkit.vercel.app/api/user/get-todos`, { withCredentials: true });
       return res.data.data.todos; // user.todos is populated
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || "Failed to fetch todos");
