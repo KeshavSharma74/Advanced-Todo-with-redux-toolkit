@@ -3,6 +3,7 @@ import Todo from "../models/Todo.model.js";
 import User from "../models/User.model.js";
 
 const addTodo = async(req,res) =>{
+    
     const userId=req.user._id;
     const {todo} = req.body;
     try{
@@ -35,7 +36,7 @@ const addTodo = async(req,res) =>{
 }
 
 const updateTodo = async (req, res) => {
-    const userId = req.userId; // middleware sets this
+    const userId = req.user._id; // middleware sets this
     const { todoId } = req.params; // pass todoId in URL
     const { todo } = req.body; // new todo text
 
@@ -67,14 +68,16 @@ const updateTodo = async (req, res) => {
 };
 
 const deleteTodo = async (req, res) => {
-    const userId = req.userId;
+    const userId = req.user._id;
     const { todoId } = req.params;
 
+    console.log("delete mei agya mei")
     try {
         if (!todoId) {
             return res.json(new ApiResponse(false, "Todo ID is required"));
         }
-
+        console.log("todoId : ",todoId);
+        console.log("User id : ",userId);
         const existingTodo = await Todo.findOne({ _id: todoId, user: userId });
 
         if (!existingTodo) {
